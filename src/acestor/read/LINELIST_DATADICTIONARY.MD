@@ -55,11 +55,11 @@ Do note that this version is still in alpha, and might be changed.
 | field                            | description                                                 | comments                                                               |
 | -------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
 | event.symptomOnset               | boolean, if symptom onset was recorded                      | usually set to True                                                    |
-| event.symptomOnset.date          | date of symptom onset, based on the ISO 8601 format.        | usually self reported                                                  |
+| event.symptomOnset.date          | date of symptom onset, compliant with the ISO 8601 format.        | usually self reported                                                  |
 | event.test                       | True or False                                               | \-                                                                     |
 | event.test.sampleCollectionDate  | date of test, compliant with ISO 8601 format                | \-                                                                     |
 | event.test.type                  | string                                                      | for dengue, can be NS1 Ag ELISA, IgM ELISA, IgG ELISA, PCR, or Unknown |
-| event.test.resultDate            | date of test, compliant with ISO 8601 format.               |                                                                        |
+| event.test.resultDate            | date of test result, compliant with ISO 8601 format.               |                                                                        |
 | event.test.result                | boolean, True for positive test and False for negative test | \`                                                                     |
 | event.test.value                 | value of test result, np.float64                            |                                                                        |
 | event.test.numberOfTests         | number of tests, np.int32                                   | can be more than one in case of NS1/IgM/IgG panel                      |
