@@ -10,14 +10,14 @@ import shutil
 START_DATE = dt.strptime("2023-09-12", "%Y-%m-%d")
 
 
-def generate_daily_summary(xls_URI: str) -> str:
-    """_summary_
+def generate_daily_summary(xls_URI: str) -> pd.DataFrame:
+    """Generates Daily Summary in standard format
 
     Args:
         xls_URI (str): _description_
 
     Returns:
-        str: _description_
+        pd.DataFrame: _description_
     """
 
     path = s3_helper.download(xls_URI)
