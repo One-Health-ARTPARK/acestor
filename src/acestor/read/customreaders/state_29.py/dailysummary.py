@@ -4,6 +4,7 @@ from pathlib import Path
 import boto3
 import os
 from datetime import datetime as dt
+import shutil
 
 
 START_DATE = dt.strptime("2023-09-12", "%Y-%m-%d")
@@ -89,3 +90,5 @@ if __name__ == "__main__":
                     "artpark-1health-hh-live-data",
                     dest_key,
                 )
+
+    shutil.rmtree("tmp/")
