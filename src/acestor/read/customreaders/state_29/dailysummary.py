@@ -1,5 +1,4 @@
 import pandas as pd
-from acestor.read import s3_helper
 from pathlib import Path
 import boto3
 import os
@@ -20,7 +19,7 @@ def generate_daily_summary(xls_URI: str) -> pd.DataFrame:
         pd.DataFrame: _description_
     """
 
-    path = s3_helper.download(xls_URI)
+    path = download(xls_URI)
 
     # Based on 2023 Format
     row_indices = list(range(4, 35)) + [37]
@@ -44,9 +43,46 @@ def generate_daily_summary(xls_URI: str) -> pd.DataFrame:
     date = key.split("/")[-1].replace(".xlsx", "")
     summary["record.date"] = date
     summary.fillna(0, inplace=True)
-    summary.drop("regionName", axis="columns", inplace=True)
+    # summary.drop("regionName", axis="columns", inplace=True)
 
     return summary
+
+
+def download(URIS: [str, dict], download_dir: str = None, access="implicit") -> [str, dict]:
+    """Download the files from S3 for the URIs provided
+
+    Args:
+        URIS (str, dict]): _description_
+        download_dir (str, optional): Directory to Download the file(s) to. Defaults to None.
+            Function uses "/tmp" when set to None, will be deprecated in favour of python's tempfile.TemporaryFile()
+        access (str, optional): _description_. Defaults to "implicit".
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        [str, dict]: the path (or dictionary of paths) of the downloaded files
+    """
+
+    if download_dir is None:
+        download_dir = "tmp/"
+
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
+
+    if isinstance(URIS, str):
+        if access == "implicit":
+            client = boto3.client('s3')
+
+            if URIS.endswith("/") or "/" not in URIS or not URIS.startswith("s3://"):
+                raise ValueError("Enter a Valid URI for a file")
+
+            bucket, key = URIS.replace("s3://", "").split("/", 1)
+            path = download_dir + key.split("/")[-1]
+
+            client.download_file(bucket, key, path)
+
+        return path
 
 
 if __name__ == "__main__":
