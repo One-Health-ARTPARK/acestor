@@ -1,0 +1,57 @@
+accepted_columns:
+    metadata:
+        recordID:
+        patientID:
+        primaryDate:
+        name:
+        address:
+        nameAddress:
+        mobile:
+        diseaseName:
+        diseaseCode:
+    demographics:
+        age:
+        ageRange:
+        gender:
+        ageGender:
+    location:
+        country.ID:
+        country.name:
+        admin.hierarchy:
+        admin1.ID:
+        admin1.name:
+        admin2.ID:
+        admin2.name:
+        admin3.ID:
+        admin3.name:
+        admin4.ID:
+        admin4.name:
+        admin5.ID:
+        admin5.name:
+        geometry.latitude:
+        geometry.longitude:
+        healthcenter.phc:
+        healthcenter.subcenter:
+        healthcenter.ssh:
+        healthcenter.hospital:
+    event:
+        symptomOnset:
+        symptomOnset.Date:
+        test:
+        test.sampleCollectionDate:
+        test.type:
+        test.resultDate:
+        test.result:
+        test.value:
+        test.numberOfTests:
+        test.additionalTests.notes:
+        admissionOrOPDRegistrationDate:
+        notes:
+    case:
+        urban_rural:
+        public_private:
+        surveillance:
+        
+        
+        
+    
